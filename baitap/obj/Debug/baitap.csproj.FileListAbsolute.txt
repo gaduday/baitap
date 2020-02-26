@@ -1,0 +1,15 @@
+C:\Users\gagad\source\repos\baitap\baitap\bin\Debug\baitap.exe.config
+C:\Users\gagad\source\repos\baitap\baitap\bin\Debug\baitap.exe
+C:\Users\gagad\source\repos\baitap\baitap\bin\Debug\baitap.pdb
+C:\Users\gagad\source\repos\baitap\baitap\obj\Debug\baitap.csprojAssemblyReference.cache
+C:\Users\gagad\source\repos\baitap\baitap\obj\Debug\baitap.Properties.Resources.resources
+C:\Users\gagad\source\repos\baitap\baitap\obj\Debug\baitap.csproj.GenerateResource.cache
+C:\Users\gagad\source\repos\baitap\baitap\obj\Debug\baitap.exe
+C:\Users\gagad\source\repos\baitap\baitap\obj\Debug\baitap.pdb
+C:\Users\gagad\source\repos\baitap\baitap\obj\Debug\baitap.frmMain.resources
+C:\Users\gagad\source\repos\baitap\baitap\bin\Debug\RestSharp.dll
+C:\Users\gagad\source\repos\baitap\baitap\bin\Debug\RestSharp.xml
+C:\Users\gagad\source\repos\baitap\baitap\obj\Debug\baitap.csproj.CopyComplete
+C:\Users\gagad\source\repos\baitap\baitap\bin\Debug\Newtonsoft.Json.dll
+C:\Users\gagad\source\repos\baitap\baitap\bin\Debug\Newtonsoft.Json.xml
+C:\Users\gagad\source\repos\baitap\baitap\obj\Debug\baitap.frmSub.resources
