@@ -37,7 +37,7 @@ namespace baitap
         // Thoát chương trình
         private void btnExit_Click(object sender, EventArgs e)
         {
-            DialogResult dialog = MessageBox.Show("Bạn có muốn thoát khỏi chương trình?", "Có", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            DialogResult dialog = MessageBox.Show("Muốn đi à?", "Ờ", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (dialog == DialogResult.OK)
             {
                 Application.Exit();
@@ -78,7 +78,7 @@ namespace baitap
  
             if (json.data.ToString() != "success")
             {
-                MessageBox.Show("Đăng nhập không hợp lệ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Nhập sai rồi", "Cyka", MessageBoxButtons.OK, MessageBoxIcon.Error);
             } else
             {
                 this.Hide();

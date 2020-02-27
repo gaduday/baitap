@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Data.OleDb;
+using RestSharp;
 
 namespace baitap
 {
@@ -33,6 +34,12 @@ namespace baitap
         private string Excel07ConString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties='Excel 8.0;HDR={1}'";
 
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+            show();
+            import();
+        }
+
+        public void show()
         {
             string filePath = openFileDialog1.FileName;
             string extension = Path.GetExtension(filePath);
@@ -82,7 +89,90 @@ namespace baitap
                         dataGridView1.DataSource = dt;
                     }
                 }
+            }          
+        }
+
+        public void import()
+        {
+            string filePath = openFileDialog1.FileName;
+
+            Microsoft.Office.Interop.Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
+            Microsoft.Office.Interop.Excel.Workbook xlWorkbook = xlApp.Workbooks.Open(filePath);
+            Microsoft.Office.Interop.Excel._Worksheet xlWorksheet = xlWorkbook.Sheets[1];
+            Microsoft.Office.Interop.Excel.Range xlRange = xlWorksheet.UsedRange;
+
+            List<Excel> listEx = new List<Excel>();
+            int rowCount = xlRange.Rows.Count;
+            int colCount = xlRange.Columns.Count;
+
+            for (int i = 2; i <= rowCount; i++)
+            {
+                Excel excel = new Excel();
+
+                if (xlRange.Cells[i, 2].Value2 == null)
+                {
+                    excel.Title = "";
+                } else
+                {
+                    excel.Title = xlRange.Cells[i, 2].Value2.ToString();
+                }
+
+                if (xlRange.Cells[i, 3].Value2 == null)
+                {
+                    excel.DocumentType = "";
+                }
+                else
+                {
+                    excel.DocumentType = xlRange.Cells[i, 3].Value2.ToString();
+                }
+
+                if (xlRange.Cells[i, 4].Value2 == null)
+                {
+                    excel.LocationID = "";
+                }
+                else
+                {
+                    excel.LocationID = xlRange.Cells[i, 4].Value2.ToString();
+                }
+
+                if (xlRange.Cells[i, 5].Value2 == null)
+                {
+                    excel.Creator = "";
+                }
+                else
+                {
+                    excel.Creator = xlRange.Cells[i, 5].Value2.ToString();
+                }
+
+                if (xlRange.Cells[i, 6].Value2 == null)
+                {
+                    excel.Date = "";
+                }
+                else
+                {
+                    excel.Date = xlRange.Cells[i, 6].Value2.ToString();
+                }
+
+                if (xlRange.Cells[i, 7].Value2 == null)
+                {
+                    excel.Description = "";
+                }
+                else
+                {
+                    excel.Description = xlRange.Cells[i, 7].Value2.ToString();
+                }
+                
+                listEx.Add(excel);
             }
+
+            var client = new RestClient("https://api.kho.dulieutnmt.vn:8443/api/v1.0/document/");
+            client.Timeout = -1;
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("Content-Type", "application/json");
+            request.AddParameter("application/json", listEx ,ParameterType.RequestBody);
+            IRestResponse response = client.Execute(request);
+            Console.WriteLine(response.Content);
+
         }
     }
 }
