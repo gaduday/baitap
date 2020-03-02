@@ -43,6 +43,7 @@
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(176, 20);
             this.txtID.TabIndex = 0;
+            this.txtID.Text = "tuanva";
             // 
             // txtPass
             // 
@@ -51,6 +52,7 @@
             this.txtPass.PasswordChar = '$';
             this.txtPass.Size = new System.Drawing.Size(177, 20);
             this.txtPass.TabIndex = 1;
+            this.txtPass.Text = "ttcgcn";
             // 
             // lblID
             // 

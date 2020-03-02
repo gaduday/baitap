@@ -19,6 +19,7 @@ namespace baitap
 {
     public partial class frmMain : Form
     {
+        public static string access_token = "";
         public frmMain()
         {
             InitializeComponent();
@@ -65,25 +66,40 @@ namespace baitap
         // Đăng nhập
         public void login()
         {
-            var client = new RestClient("https://api.user.dulieutnmt.vn:8989/api/v1.0/user/login");
+            //var client = new RestClient("https://api.user.dulieutnmt.vn:8989/api/v1.0/user/login");
+            //client.Timeout = -1;
+            //var request = new RestRequest(Method.POST);
+            //request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+            //request.AddParameter("account", txtID.Text);
+            //request.AddParameter("pass", txtPass.Text);
+
+            //// Convert sang object
+            //IRestResponse response = client.Execute(request);
+
+            var client = new RestClient("https://sso.cafenauda.net:8443/oauth2/token");
             client.Timeout = -1;
             var request = new RestRequest(Method.POST);
             request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
-            request.AddParameter("account", txtID.Text);
-            request.AddParameter("pass", txtPass.Text);
-
-            // Convert sang object
+            request.AddHeader("Authorization", "Basic eVRfNmphajBvZXJXZHNoOEZRdU5oVUNreGZrYTp3OWJsVWdja0c1NUtfMlo0cEprNUFpYXVJOVVh");
+            request.AddParameter("grant_type", "password");
+            request.AddParameter("scope", "openid");
+            request.AddParameter("username", txtID.Text);
+            request.AddParameter("password", txtPass.Text);
             IRestResponse response = client.Execute(request);
-            dynamic json = JsonConvert.DeserializeObject(response.Content);
- 
-            if (json.data.ToString() != "success")
+
+            dynamic json = JsonConvert.DeserializeObject(response.Content); 
+
+            if (json.error != null)
             {
                 MessageBox.Show("Nhập sai rồi", "Cyka", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            } else
+            }
+            else
             {
                 this.Hide();
                 frmSub frm = new frmSub();
                 frm.Show();
+                access_token = json.access_token.ToString();
+                Console.WriteLine(access_token);
             }
         }
     }

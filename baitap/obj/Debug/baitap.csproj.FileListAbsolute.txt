@@ -29,3 +29,4 @@ F:\Downloads\Compressed\baitap\baitap\obj\Debug\baitap.csproj.CopyComplete
 F:\Downloads\Compressed\baitap\baitap\obj\Debug\baitap.exe
 F:\Downloads\Compressed\baitap\baitap\obj\Debug\baitap.pdb
 F:\Downloads\Compressed\baitap\baitap\obj\Debug\baitap.csproj.ResolveComReference.cache
+F:\Downloads\Compressed\baitap\baitap\bin\Debug\Colorful.Console.dll
